@@ -1,0 +1,62 @@
+version: '3'
+services:
+  goslow4me:
+    image: royvandewater/rustygoslow4me:v1.1.2
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          memory: 10M
+      labels:
+        - traefik.docker.network=traefik
+        - traefik.frontend.rule=Host:api.goslow4.me
+        - traefik.frontend.entryPoints=http,https
+        - traefik.port=80
+    networks:
+      - traefik
+  trading-post:
+    image: royvandewater/trading-post:v6.4.0
+    env_file: './config/trading-post.env'
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          memory: 10M
+      labels:
+        - traefik.docker.network=traefik
+        - traefik.frontend.rule=Host:trading-post.club
+        - traefik.frontend.entryPoints=http,https
+        - traefik.port=80
+    networks:
+      - mongo
+      - traefik
+  mongo:
+    image: mongo
+    deploy:
+      resources:
+        limits:
+          memory: 100M
+    volumes:
+      - ./config/mongo-data:/data/db
+    networks:
+      - mongo
+  traefik:
+    image: traefik
+    deploy:
+      resources:
+        limits:
+          memory: 30M
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./config/traefik/traefik.toml:/etc/traefik/traefik.toml
+      - ./config/traefik/acme.json:/etc/traefik/acme/acme.json
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+      - "8181:8181"
+    networks:
+      - traefik
+networks:
+  mongo:
+  traefik:
