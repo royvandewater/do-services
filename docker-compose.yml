@@ -1,7 +1,7 @@
 version: '3'
 services:
   goslow4me:
-    image: royvandewater/rustygoslow4me:v1.1.2
+    image: royvandewater/rustygoslow4me:v1.1.3
     deploy:
       replicas: 2
       resources:
