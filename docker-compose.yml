@@ -9,7 +9,7 @@ services:
           memory: 10M
       labels:
         - traefik.docker.network=traefik
-        - traefik.frontend.rule=HostRegexp:{subdomain:[a-zA-Z0-9_]+\.}?goslow4.me
+        - traefik.frontend.rule=HostRegexp:goslow4.me,{subdomain:[a-zA-Z0-9_]+}.goslow4.me
         - traefik.frontend.entryPoints=http,https
         - traefik.port=80
     networks:
