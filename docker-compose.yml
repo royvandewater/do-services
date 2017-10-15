@@ -15,7 +15,7 @@ services:
     networks:
       - traefik
   trading-post:
-    image: royvandewater/trading-post:v6.4.0
+    image: royvandewater/trading-post:v6.5.0
     env_file: './config/trading-post.env'
     deploy:
       replicas: 2
