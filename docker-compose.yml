@@ -59,4 +59,6 @@ services:
       - traefik
 networks:
   mongo:
+    attachable: true
   traefik:
+    attachable: true
