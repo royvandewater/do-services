@@ -23,7 +23,7 @@ services:
         limits:
           memory: 10M
       labels:
-        - traefik.docker.network=traefik
+        - traefik.docker.network=do_traefik
         - traefik.frontend.rule=Host:trading-post.club
         - traefik.frontend.entryPoints=http,https
         - traefik.port=80
