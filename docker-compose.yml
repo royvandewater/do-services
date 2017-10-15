@@ -1,4 +1,4 @@
-version: '3'
+version: '3.3'
 services:
   goslow4me:
     image: royvandewater/rustygoslow4me:v1.1.3
