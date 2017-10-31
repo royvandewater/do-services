@@ -16,6 +16,8 @@ services:
   trading-post:
     image: royvandewater/trading-post:v6.5.3
     env_file: './config/trading-post.env'
+    depends_on:
+      - mongo
     deploy:
       replicas: 2
       resources:
