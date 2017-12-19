@@ -7,7 +7,7 @@ services:
       resources:
         limits:
           cpus: '0.5'
-          memory: '100M'
+          memory: '400M'
     volumes:
       - ./config/ipfs-data:/data/ipfs
     networks:
