@@ -1,3 +1,4 @@
 config/trading-post.env
 config/traefik/traefik.toml
 config/mongo-data
+*.swp
