@@ -19,7 +19,7 @@ services:
     networks:
       - ipfs
   ipfs-pinning-service:
-    image: computes/ipfs-pinning-service:v4.1.0
+    image: computes/ipfs-pinning-service:v4.1.1
     env_file: './config/ipfs-pinning-service.env'
     deploy:
       replicas: 1
