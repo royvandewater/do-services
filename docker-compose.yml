@@ -2,14 +2,31 @@ version: '3.3'
 services:
   ipfs:
     image: ipfs/go-ipfs:v0.4.13
+    command: ["daemon", "--migrate=true", "--enable-gc", "--enable-pubsub-experiment"]
     deploy:
       replicas: 1
       resources:
         limits:
           cpus: '0.5'
-          memory: '400M'
+          memory: '200M'
+      labels:
+        - traefik.frontend.rule=Host:ipfs.trading-post.club
+        - traefik.frontend.entryPoints=http,https
+        - "traefik.frontend.auth.basic=computes:$$apr1$$ytmVb2GX$$ebtIUPCG1JFWKbPOtHv.n1"
+        - traefik.port=5001
     volumes:
       - ./config/ipfs-data:/data/ipfs
+    networks:
+      - ipfs
+  ipfs-pinning-service:
+    image: computes/ifps-pinning-service:v4.0.12
+    env_file: './config/ipfs-pinning-service.env'
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '20M'
     networks:
       - ipfs
   goslow4me:
@@ -52,7 +69,7 @@ services:
     networks:
       - trading-post
   traefik:
-    image: traefik
+    image: traefik:v1.5
     deploy:
       resources:
         limits:
@@ -68,6 +85,7 @@ services:
       - "8181:8181"
     networks:
       - goslow4me
+      - ipfs
       - trading-post
 networks:
   goslow4me:

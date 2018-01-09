@@ -2,3 +2,6 @@ config/trading-post.env
 config/traefik/traefik.toml
 config/mongo-data
 *.swp
+secrets
+config/ipfs-data
+config/ipfs-pinning-service.env
