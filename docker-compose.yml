@@ -8,7 +8,7 @@ services:
       resources:
         limits:
           cpus: '0.5'
-          memory: '200M'
+          memory: '1024M'
       labels:
         - traefik.frontend.rule=Host:ipfs.trading-post.club
         - traefik.frontend.entryPoints=http,https
@@ -16,6 +16,8 @@ services:
         - traefik.port=5001
     volumes:
       - ./config/ipfs-data:/data/ipfs
+    ports:
+      - "4001:4001"
     networks:
       - ipfs
   ipfs-pinning-service:
