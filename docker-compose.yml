@@ -2,6 +2,8 @@ version: '3.3'
 services:
   ipfs:
     image: ipfs/go-ipfs:v0.4.13
+    env:
+      - LIBP2P_FORCE_PNET=1
     command: ["daemon", "--migrate=true", "--enable-gc", "--enable-pubsub-experiment"]
     deploy:
       replicas: 1
