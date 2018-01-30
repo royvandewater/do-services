@@ -106,6 +106,8 @@ storage = "acme.json" # or "traefik/acme/account" if using KV store
 # Required
 #
 entryPoint = "https"
+[acme.httpChallenge]
+  entryPoint = "http"
 
 # Use a DNS based acme challenge rather than external HTTPS access, e.g. for a firewalled server
 # Select the provider that matches the DNS domain that will host the challenge TXT record,
