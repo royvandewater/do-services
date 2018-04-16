@@ -14,7 +14,7 @@ services:
     networks:
       - goslow4me
   trading-post:
-    image: royvandewater/trading-post:v6.5.3
+    image: royvandewater/trading-post:v6.5.4
     env_file: './config/trading-post.env'
     depends_on:
       - mongo
