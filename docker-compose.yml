@@ -40,7 +40,7 @@ services:
     networks:
       - trading-post
   traefik:
-    image: traefik:v1.5
+    image: traefik:v1.7
     environment:
       - "LIBP2P_FORCE_PNET=1"
     deploy:
