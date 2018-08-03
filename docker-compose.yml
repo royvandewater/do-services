@@ -8,6 +8,7 @@ services:
         limits:
           memory: 10M
       labels:
+        - traefik.docker.network=goslow4me
         - traefik.frontend.rule=HostRegexp:goslow4.me,{subdomain:[a-zA-Z0-9_]+}.goslow4.me
         - traefik.frontend.entryPoints=http,https
         - traefik.port=80
@@ -24,6 +25,7 @@ services:
         limits:
           memory: 10M
       labels:
+        - traefik.docker.network=trading-post
         - traefik.frontend.rule=Host:trading-post.club
         - traefik.frontend.entryPoints=http,https
         - traefik.port=80
